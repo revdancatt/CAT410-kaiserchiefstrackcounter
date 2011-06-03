@@ -1,0 +1,13 @@
+application: kaiserchiefs
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+
+- url: /json
+  script: json.py
+
+
+- url: .*
+  script: main.py
