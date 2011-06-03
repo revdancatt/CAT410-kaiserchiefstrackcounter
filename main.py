@@ -32,7 +32,7 @@ class MainHandler(webapp.RequestHandler):
 
     if pointers.count() == 0:
       pointer = Pointers()
-      pointer.pointer = 2199
+      pointer.pointer = 1113
       pointer.json = simplejson.dumps(trackjson)
       pointer.put()
     else:
@@ -61,7 +61,7 @@ class MainHandler(webapp.RequestHandler):
       # all the time when there's a missing album
       #
       # But be sure you know what the last album ID is so you can kill it!
-#      self.response.out.write('<script>document.location="/"</script>')
+      self.response.out.write('<script>document.location="/"</script>')
       
     else:
 
