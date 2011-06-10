@@ -1,0 +1,219 @@
+<html lang="en">
+<head>
+  <title>Kaiser Chiefs Track Tracker</title>
+
+  <link rel="stylesheet" href="/css/940.css" type="text/css" media="screen" />
+  <!--[if lte IE 9]>
+  <link rel="stylesheet" href="/css/ie.css" type="text/css" media="screen" />
+  <![endif]-->
+  <link rel="stylesheet" href="/css/typeimg.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/css/smallerscreen.css" media="only screen and (max-width: 1023px)" />
+  <link rel="stylesheet" href="/css/mobile.css" media="handheld, only screen and (max-width: 767px)" />
+  <link rel="stylesheet" href="/css/main.css" media="screen" />
+
+</head>
+<body>
+  
+  <div class="container">
+  
+    <div class=row>
+      <div id=header class="twelve-col last">
+        <h1>Kaiser Chiefs Track Tracker</h1>
+      </div>
+      <div id=description  class="twelve-col last">
+        <p>
+            The Kaiser Chiefs have a new <a href="http://kaiserchiefs.com/">internet-album-toy-thing</a> out, it allow people to pick and choose 10
+            tracks out of a selection of 20 and arrange them how they wish into their own personal album.
+        </p>
+        <p>
+          This site keeps track of which tracks are being selected the most, and then some more detailed stuff about the positions
+          of those tracks and so on.
+        </p>
+        <p>
+          You can read more about this project <a href="http://revdancatt.com/2011/06/03/the-most-statistically-correct-kaiser-chiefs-album/">over here</a>. This is site is not affiliated with Kaiser Chiefs in any way.
+        </p>
+      </div>
+    </div>
+
+    <div class=row>
+      <div id=maindatatable class="twelve-col last">
+
+        <table cellpadding=0 cellspacing=0 class="twelve-col last">
+          <tr class="header dark">
+            <td>Pos</td>
+            <td>Track</td>
+            <td>Count</td>
+            <td>Most Popular Position</td>
+            <td>Track that most often comes afterwards</td>
+          </tr>
+          {% for track in tracksOrdered %}
+            <tr class="{% cycle 'light' 'dark' %}">
+              <td class=number>{{ forloop.counter }}</td>
+              <td><a href=#{{ track.id }}>{{ track.name|safe }}</a></td>
+              <td class=number>{{ track.count|intcomma }}</td>
+              <td><a href=#pos{{ track.topPosition }}>As track #{{ track.topPosition }}</a> ({{ track.maxCount }} times)</td>
+              <td><a href=#{{ track.topFollowerId }}>{{ track.topFollower|safe }}</a> ({{ track.maxFollowerCount }} times)</td>
+            </tr>
+          {% endfor %}
+          <tr class="totals firsttotal light">
+            <td>&nbsp;</td>
+            <td>Total Tracks</td>
+            <td class=number>{{ totalTracks|intcomma }}</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr class="totals dark">
+            <td>&nbsp;</td>
+            <td>Albums Created</td>
+            <td class=number id="{{ totalSold|intcomma }}">{{ totalAlbums|intcomma }}</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+        
+      </div>
+    </div>
+    
+    <div class=row>
+      <div id=maindatachart class="twelve-col last">
+      </div>
+    </div>
+
+    <div class=row>
+      
+      <div class="trackdetails eight-col">
+
+        <div class=description>
+          <p>
+            These are a bit more complicated.  
+          </p>
+          <p>
+            Below each track is listed (in order of popularity) and shows on the left the number of times it appears in each
+            position on a users album. The green indications the position it's most found in. For example the track "Problem Solved" appears
+            most often in the first few slots of users albums, and less often towards the end of an album.
+          </p>
+          <p>
+            The table on the right side shows how often the other tracks follow the main track on the album. "Problem Solved" is most
+            often followed by "Can't Mind My Own Business" and "If You Will Have Me".
+          </p>
+        </div>
+        
+        
+        <div class="row eight-col last">
+
+          {% for track in tracksOrdered %}
+            <div class="row trackdetail eight-col">
+
+              <h2><a name={{ track.id }}>{{ track.name|safe }}</a></h2>
+          
+              <div class="three-col">
+                <table class=postable>
+                  <tr class=header><td class=posnumber>Track #</td><td>Count</td></tr>
+                    {% for pos in track.winningPositions %}
+                      <tr>
+                        <td class=posnumber>{{ pos.position }}</td>
+                        <td class=barback>
+                          <div class=holder>
+                            <div class=back>&nbsp;{{ pos.count }}</div>
+                            <div class="front{% if track.topPosition|stringformat:"s" == pos.position|stringformat:"s" %} winner{% endif %}" style="width:{{ pos.percent }}%">&nbsp;{{ pos.count }}</div>
+                          </div>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                </table>
+              </div>
+
+              <div class="five-col last">
+
+                <table class=followtable>
+                  <tr class=header><td class=posnumber>Following Track</td><td>Count</td></tr>
+                    {% for follow in track.winningFollows %}
+                      <tr>
+                        <td class=followname><a href=#{{follow.id}}>{{ follow.name|safe }}</a></td>
+                        <td class=barback>
+                          <div class=holder>
+                            <div class=back>&nbsp;{{ follow.count }}</div>
+                            <div class="front{% if track.topFollowerId == follow.id %} winner{% endif %}" style="width:{{ follow.percent }}%">&nbsp;{{ follow.count }}</div>
+                          </div>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                </table>
+
+              </div>
+
+            </div>
+          {% endfor %}
+        </div>
+          
+      </div>
+           
+
+      <div class="row positiondetails four-col last">
+
+        <div class=description>
+          <p>
+            Below shows now often music tracks appear in each position on the users albums. So the first chart shows the number of times
+            each track was placed first on the album.
+          </p>
+          <p>
+            For example we can see that "Little Shocks" is the track user more often than any other open the album.
+          </p>
+        </div>
+
+        {% for position in sortedPositions %}
+          <div class="row positiondetail four-col">
+            <h2><a name=pos{{ forloop.counter }}>Track Position {{ forloop.counter }}</a></h2>
+            <table class=positiontable>
+              <tr class=header>
+                <td>Track</td>
+                <td>Count</td>
+              </tr>
+
+              {% for trackName in trackNames %}
+                {% for index, track in position.tracks.items %}
+                  {% if trackName == track.name %}
+                    <tr>
+                      <td class=trackname><a href=#{{ track.id }}>{{ track.name|safe }}</a></td>
+                      <td class=barback>
+                        <div class=holder>
+                          <div class=back>&nbsp;{{ track.count }}</div>
+                          <div class="front{% if position.maxTrack == track.id %} winner{% endif %}" style="width:{{ track.percent }}%">&nbsp;{{ track.count }}</div>
+                        </div>
+                      </td>
+                    </tr>
+                  {% endif %}
+                {% endfor %}
+              {% endfor %}
+              
+            </table>
+          </div>
+        {% endfor %}
+        </div>
+
+      </div>
+      
+    </div>
+
+
+    <div class=row>
+      <div id=footer  class="twelve-col last">
+        <p>
+          This is the Footer :)
+        </p>
+        <p>
+          If you are using Internet Explorer and this footer is all you see, then I suggest you use a browser that supports standards, like Chrome
+          or Firefox. Sorry :( no time on a quick hacky project to worry about IE.
+        </p>
+        <p>
+          For more information about this data please read <a href="http://revdancatt.com/2011/06/03/the-most-statistically-correct-kaiser-chiefs-album/">this blog post</a> and this blog post. Or find me on twitter <a href="http://twitter.com/revdancatt">@revdancatt</a>.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+
+    
+</body>
+</html>

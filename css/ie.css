@@ -1,0 +1,27 @@
+/* ie specific stuff here */
+div.container {
+  display: none !important;
+}
+
+div#mainheader {
+  height:70px;
+  overflow: hidden;
+}
+
+div#headmiddle {
+  display: none !important;
+}
+
+div.ie {
+  display: block !important;
+  width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+div.ie p {
+  text-align: center;
+  font-size: 16px;
+  line-height: 20px;
+}

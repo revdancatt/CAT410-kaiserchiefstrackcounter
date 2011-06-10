@@ -1,0 +1,84 @@
+/* CSS Resets */
+
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,address,cite,code,del,dfn,em,img,ins,q,small,strong,sub,sup,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{border:0;margin:0;padding:0}article,aside,figure,figure img,figcaption,hgroup,footer,header,nav,section,video,object{display:block}a img{border:0}figure{position:relative}figure img{width:100%}
+
+
+/* The 940px Grid as used by the Guardian */
+
+.container {
+  width:940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.row {
+  width: 100%;
+  max-width: 940px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.eleven-col, .ten-col, .nine-col, .eight-col, .seven-col, .six-col, .five-col, .four-col, .three-col, .two-col, .one-col {
+  float:left;
+  overflow:hidden!important;
+  margin-right:20px;
+}
+
+.twelve-col{
+  clear:both;
+  position:relative;
+  width:940px;
+}
+
+.eleven-col{
+  width:860px;
+}
+
+.ten-col{
+  width:780px;
+}
+
+.nine-col{
+  width:700px;
+}
+
+.eight-col{
+  width:620px;
+}
+
+.seven-col{
+  width:540px;
+}
+
+.six-col{
+  width:460px!important;
+}
+
+.five-col{
+  width:380px;
+}
+
+.four-col{
+  width:300px;
+}
+
+.three-col{
+  width:220px;
+}
+
+.two-col{
+  width:140px!important;
+}
+
+.one-col{
+  width:60px;
+}
+
+.last,
+.edge{
+  margin-right:0 !important;
+}
+
+img, object, embed {
+  max-width: 100%;
+}

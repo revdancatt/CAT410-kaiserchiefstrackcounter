@@ -5,9 +5,45 @@ api_version: 1
 
 handlers:
 
+################################################################################
+# Handlers for the static stuff, img, css, js etc.
+################################################################################
+
+- url: /imgs
+  static_dir: imgs
+  
+- url: /img
+  static_dir: imgs
+  
+- url: /fonts
+  static_dir: fonts
+
+- url: /css
+  static_dir: css
+  
+- url: /js
+  static_dir: js
+
+- url: /favicon.ico
+  static_files: imgs/favicon.ico
+  upload: imgs/favicon.ico
+
+
+################################################################################
+#
+# All the CRON tasks go here
+#
+################################################################################
+
+- url: /tasks/findOutLatest
+  script: tasks/findOutLatest.py
+  login: admin
+  
 - url: /json
   script: json.py
 
+- url: /getAlbum
+  script: main.py
 
 - url: .*
-  script: main.py
+  script: index.py

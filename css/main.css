@@ -1,0 +1,212 @@
+/* Layout for desktop version */
+
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+	background: url(/imgs/bg.jpg);
+}
+
+a {
+	text-decoration: none;
+	color: #3366FF;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+div#header {
+	text-align: center;
+}
+
+h1 {
+	margin-top: 20px;
+	font-size: 48px;
+	margin-bottom: 20px;
+}
+
+h2 {
+	color: #333333;
+	margin-left: 12px;
+}
+
+h2 a {
+	color: #333333;
+}
+
+div#footer {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+div#description,
+div#footer {
+	background: white;
+	margin-bottom: 20px;
+	padding-top: 12px;
+	padding-bottom: 6px;
+}
+
+div#description p,
+div#footer p {
+	font-size: 16px;
+	margin-left: 160px;
+	margin-right: 160px;
+	margin-bottom: 12px;
+	line-height: 20px;
+	
+}
+
+div.description {
+	margin: 8px;
+	font-size: 12px;
+}
+
+div.description p {
+	margin-bottom: 6px;
+}
+
+td.number {
+	text-align: right !important;
+}
+
+
+div#maindatatable table {
+	font-size: 13px;
+}
+
+tr.header td,
+tr.totals td {
+	font-weight: bold;
+}
+
+div#maindatatable table tr.light {
+	background: #FCFCFC;
+}
+
+div#maindatatable table tr.dark {
+	background: #ECECEC;
+}
+
+div#maindatatable tr.firsttotal td {
+	border-top: 1px solid black;
+}
+
+div#maindatatable tr.lasttotal td,
+div#maindatatable tr.header td {
+	border-bottom: 1px solid black;
+}
+
+div#maindatatable td {
+	padding: 2px;
+	padding-right: 12px;
+}
+
+table.postable,
+table.followtable {
+	width:98%;
+	font-size:12px;
+	line-height: 16px;
+}
+
+table.positiontable {
+	width: 98%;
+	font-size: 11px;
+	line-height: 15px;
+}
+
+table.postable td.posnumber {
+	width:20%;
+}
+
+table.followtable td.followname,
+table.positiontable td.trackname {
+	width: 50%;
+}
+
+td.barback {
+	position: relative;
+}
+
+td.barback div.holder {
+	position: relative;
+	height: 16px;
+}
+
+td.barback div.back,
+td.barback div.front {
+	position: absolute;
+	top:0px;
+	left:0px;
+	height: 16px;
+	background: #EEEEFF;
+	color: black;
+}
+
+td.barback div.back {
+	width: 100%;
+}
+
+td.barback div.front {
+	background: blue;
+	color: white;
+	overflow: hidden;
+}
+
+td.barback div.winner {
+	background: #33FF33;
+	color: black;
+}
+
+
+div.trackdetails,
+div.positiondetails {
+	background: white;
+	box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+	margin-top: 20px;
+}
+
+div.trackdetail,
+div.positiondetail {
+	margin-top: 20px;
+	font-size: 18px;
+	color: #666666;
+	text-shadow: 0px 1px 1px #FFFFFF;
+	border-top: 1px inset #FFFFFF;
+	padding-top: 8px;
+}
+
+div.trackdetail table {
+	margin-left: 6px;
+}
+
+div.positiondetail table {
+	margin-left: 3px;
+}
+
+div.positiondetails {
+	background: white;
+}
+
+/* Layout for mobile version */
+
+@media handheld, only screen and (max-width: 767px) {
+	.examplecontainer {
+		body {
+		}
+	}
+}
+
+/* Provide higher res assets for iPhone 4 */
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) { 
+
+/* An example of how to override an image with one twice the size for iPhone 4. Specify the original pixel size with background-size.
+.download {
+	background: url(../img/downarrow@2x.png) no-repeat;
+	background-size: 27px 28px;
+}
+*/
+
+}

@@ -1,0 +1,5 @@
+cron:
+
+- description: get the latest album index
+  url: /tasks/findOutLatest
+  schedule: every 5 minutes
