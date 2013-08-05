@@ -1,7 +1,7 @@
 ![Screen Shot](http://cattopus23.com/img/panel-CAT410.png)
 
-Kaiser Chiefs Trackcounter
-==========================
+CAT410 Kaiser Chiefs Trackcounter
+=================================
 
 Scraper to analyse the user created albums on the Kaiser Chiefs' website when
 they released the "The Future is Medieval" album.
